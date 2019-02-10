@@ -16,6 +16,12 @@
 		1B250CDF220EFAAF004607B7 /* VideoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B250CDD220EFAAF004607B7 /* VideoListCell.swift */; };
 		1B250CE0220EFAAF004607B7 /* VideoListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B250CDE220EFAAF004607B7 /* VideoListCell.xib */; };
 		1B250CE4220F04BE004607B7 /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B250CE3220F04BE004607B7 /* DetailsVC.swift */; };
+		1B250CEE22106075004607B7 /* SimpleTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B250CEC22106075004607B7 /* SimpleTextCell.swift */; };
+		1B250CEF22106075004607B7 /* SimpleTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B250CED22106075004607B7 /* SimpleTextCell.xib */; };
+		1B250CF222107338004607B7 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B250CF122107338004607B7 /* APIClient.swift */; };
+		1B250CF5221080CA004607B7 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B250CF3221080CA004607B7 /* CommentCell.swift */; };
+		1B250CF6221080CA004607B7 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B250CF4221080CA004607B7 /* CommentCell.xib */; };
+		1B250CF82210991E004607B7 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B250CF72210991E004607B7 /* Comment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +36,12 @@
 		1B250CDD220EFAAF004607B7 /* VideoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListCell.swift; sourceTree = "<group>"; };
 		1B250CDE220EFAAF004607B7 /* VideoListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoListCell.xib; sourceTree = "<group>"; };
 		1B250CE3220F04BE004607B7 /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
+		1B250CEC22106075004607B7 /* SimpleTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextCell.swift; sourceTree = "<group>"; };
+		1B250CED22106075004607B7 /* SimpleTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleTextCell.xib; sourceTree = "<group>"; };
+		1B250CF122107338004607B7 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		1B250CF3221080CA004607B7 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		1B250CF4221080CA004607B7 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
+		1B250CF72210991E004607B7 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +74,7 @@
 		1B250CC4220EE7A4004607B7 /* Play Sports Network Test */ = {
 			isa = PBXGroup;
 			children = (
+				1B250CF02210732A004607B7 /* Networking */,
 				1B250CE6220F2881004607B7 /* Singletons */,
 				1B250CE1220F0491004607B7 /* View Controllers */,
 				1B250CDA220EFA5C004607B7 /* Cells */,
@@ -78,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				1B250CD8220EE9D6004607B7 /* Video.swift */,
+				1B250CF72210991E004607B7 /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -103,6 +117,9 @@
 		1B250CDC220EFA76004607B7 /* Video Details */ = {
 			isa = PBXGroup;
 			children = (
+				1B250CEB22106007004607B7 /* Date and Duration Cell */,
+				1B250CEA22105FFC004607B7 /* Comment Cell */,
+				1B250CE922105FF1004607B7 /* Simple Text Cell */,
 			);
 			path = "Video Details";
 			sourceTree = "<group>";
@@ -138,6 +155,39 @@
 				1B250CC5220EE7A4004607B7 /* AppDelegate.swift */,
 			);
 			path = Singletons;
+			sourceTree = "<group>";
+		};
+		1B250CE922105FF1004607B7 /* Simple Text Cell */ = {
+			isa = PBXGroup;
+			children = (
+				1B250CEC22106075004607B7 /* SimpleTextCell.swift */,
+				1B250CED22106075004607B7 /* SimpleTextCell.xib */,
+			);
+			path = "Simple Text Cell";
+			sourceTree = "<group>";
+		};
+		1B250CEA22105FFC004607B7 /* Comment Cell */ = {
+			isa = PBXGroup;
+			children = (
+				1B250CF3221080CA004607B7 /* CommentCell.swift */,
+				1B250CF4221080CA004607B7 /* CommentCell.xib */,
+			);
+			path = "Comment Cell";
+			sourceTree = "<group>";
+		};
+		1B250CEB22106007004607B7 /* Date and Duration Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Date and Duration Cell";
+			sourceTree = "<group>";
+		};
+		1B250CF02210732A004607B7 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				1B250CF122107338004607B7 /* APIClient.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +250,8 @@
 			files = (
 				1B250CD0220EE7A6004607B7 /* LaunchScreen.storyboard in Resources */,
 				1B250CE0220EFAAF004607B7 /* VideoListCell.xib in Resources */,
+				1B250CEF22106075004607B7 /* SimpleTextCell.xib in Resources */,
+				1B250CF6221080CA004607B7 /* CommentCell.xib in Resources */,
 				1B250CCD220EE7A6004607B7 /* Assets.xcassets in Resources */,
 				1B250CCB220EE7A4004607B7 /* Main.storyboard in Resources */,
 			);
@@ -213,10 +265,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B250CC8220EE7A4004607B7 /* ListVC.swift in Sources */,
+				1B250CF222107338004607B7 /* APIClient.swift in Sources */,
 				1B250CDF220EFAAF004607B7 /* VideoListCell.swift in Sources */,
 				1B250CE4220F04BE004607B7 /* DetailsVC.swift in Sources */,
 				1B250CD9220EE9D6004607B7 /* Video.swift in Sources */,
+				1B250CEE22106075004607B7 /* SimpleTextCell.swift in Sources */,
 				1B250CC6220EE7A4004607B7 /* AppDelegate.swift in Sources */,
+				1B250CF82210991E004607B7 /* Comment.swift in Sources */,
+				1B250CF5221080CA004607B7 /* CommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

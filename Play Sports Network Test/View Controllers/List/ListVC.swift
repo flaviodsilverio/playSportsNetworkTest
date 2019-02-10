@@ -29,8 +29,6 @@ class ListVC: UIViewController {
         let cell = UINib(nibName: "VideoListCell", bundle: nil)
         tableView.register(cell, forCellReuseIdentifier: "cell")
 
-        // Do any additional setup after loading the view, typically from a nib.
-
         /*
          https://developers.google.com/apis-explorer/#p/youtube/v3/youtube.channels.list?
          part=contentDetails
@@ -48,7 +46,7 @@ class ListVC: UIViewController {
 
         }*/
 
-        requestForURL(string: "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=UU_A--fhX5gea0i4UtpD99Gg&key=AIzaSyAJ7SZBsW40AETG7LMC_DeUA17DFf-U2Qo") {
+        APIClient.shared.getRequest(for: "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=UU_A--fhX5gea0i4UtpD99Gg&key=AIzaSyAJ7SZBsW40AETG7LMC_DeUA17DFf-U2Qo") {
             (data: Any?, response: URLResponse?, error: Error?) in
 
 
@@ -71,24 +69,14 @@ class ListVC: UIViewController {
         }
     }
 
-    func requestForURL(string: String, completion: @escaping ((_ data: Any?, _ response: URLResponse?, _ error: Error?)->())){
 
-        let session = URLSession.shared
-        let url = URL(string: string)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        session.dataTask(with: url!) { (data, response, error) in
+        if let destination = segue.destination as? DetailsVC {
 
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
+            destination.video = items[tableView.indexPathForSelectedRow?.row ?? 0]
 
-                completion(json, nil, nil)
-
-            } catch {
-
-            }
-
-
-            }.resume()
+        }
 
     }
     /*
@@ -122,12 +110,8 @@ extension ListVC: UITableViewDataSource {
         }
     }
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return items.count
-    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return items.count
     }
 
 }
