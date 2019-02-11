@@ -26,7 +26,12 @@ struct Video {
         date = snippet["publishedAt"] as? String ?? ""
         title = snippet["title"] as? String ?? ""
         id = snippet["_1DEZSURw2E"] as? String ?? "_1DEZSURw2E"
-        thumbnailURL = snippet["thumbnailURL"] as? String ?? "https://i.ytimg.com/vi/_1DEZSURw2E/hqdefault.jpg"
+
+        guard let thumbnails = snippet["thumbnails"] as? JSON else { return nil }
+
+        print(thumbnails)
+
+        thumbnailURL = (thumbnails["medium"] as! JSON)["url"] as? String ?? ""
 
     }
 }

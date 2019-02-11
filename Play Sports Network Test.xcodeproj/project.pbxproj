@@ -22,6 +22,7 @@
 		1B250CF5221080CA004607B7 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B250CF3221080CA004607B7 /* CommentCell.swift */; };
 		1B250CF6221080CA004607B7 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B250CF4221080CA004607B7 /* CommentCell.xib */; };
 		1B250CF82210991E004607B7 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B250CF72210991E004607B7 /* Comment.swift */; };
+		6A7CF25AD7998AF1D288CFED /* Pods_Play_Sports_Network_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF613AFA44D7EEB2EE4C10F /* Pods_Play_Sports_Network_Test.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,9 @@
 		1B250CF3221080CA004607B7 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		1B250CF4221080CA004607B7 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		1B250CF72210991E004607B7 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		678600696DA50405107F173D /* Pods-Play Sports Network Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Play Sports Network Test.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Play Sports Network Test/Pods-Play Sports Network Test.debug.xcconfig"; sourceTree = "<group>"; };
+		7EF613AFA44D7EEB2EE4C10F /* Pods_Play_Sports_Network_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Play_Sports_Network_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED994E726D4AC2CD54D1053C /* Pods-Play Sports Network Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Play Sports Network Test.release.xcconfig"; path = "Pods/Target Support Files/Pods-Play Sports Network Test/Pods-Play Sports Network Test.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,17 +53,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A7CF25AD7998AF1D288CFED /* Pods_Play_Sports_Network_Test.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1ACCEAB5058FBCC9815C646E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7EF613AFA44D7EEB2EE4C10F /* Pods_Play_Sports_Network_Test.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1B250CB9220EE7A4004607B7 = {
 			isa = PBXGroup;
 			children = (
 				1B250CC4220EE7A4004607B7 /* Play Sports Network Test */,
 				1B250CC3220EE7A4004607B7 /* Products */,
+				5941DD899241BF82DAFCEF7D /* Pods */,
+				1ACCEAB5058FBCC9815C646E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -190,6 +205,15 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		5941DD899241BF82DAFCEF7D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				678600696DA50405107F173D /* Pods-Play Sports Network Test.debug.xcconfig */,
+				ED994E726D4AC2CD54D1053C /* Pods-Play Sports Network Test.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -197,9 +221,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B250CD4220EE7A6004607B7 /* Build configuration list for PBXNativeTarget "Play Sports Network Test" */;
 			buildPhases = (
+				B63F38D2E64495DA2AFEBB92 /* [CP] Check Pods Manifest.lock */,
 				1B250CBE220EE7A4004607B7 /* Sources */,
 				1B250CBF220EE7A4004607B7 /* Frameworks */,
 				1B250CC0220EE7A4004607B7 /* Resources */,
+				CFAD6EBD68FEB3CBF1E1618B /* [CP] Embed Pods Frameworks */,
+				80D656AAD63991A6E767F38A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -258,6 +285,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		80D656AAD63991A6E767F38A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Play Sports Network Test/Pods-Play Sports Network Test-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B63F38D2E64495DA2AFEBB92 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Play Sports Network Test-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CFAD6EBD68FEB3CBF1E1618B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Play Sports Network Test/Pods-Play Sports Network Test-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Play Sports Network Test/Pods-Play Sports Network Test-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1B250CBE220EE7A4004607B7 /* Sources */ = {
@@ -416,6 +497,7 @@
 		};
 		1B250CD5220EE7A6004607B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 678600696DA50405107F173D /* Pods-Play Sports Network Test.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -434,6 +516,7 @@
 		};
 		1B250CD6220EE7A6004607B7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED994E726D4AC2CD54D1053C /* Pods-Play Sports Network Test.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -7,11 +7,11 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DetailsVC: UIViewController {
 
     @IBOutlet weak var thumbnailImageView: UIImageView!
-
     @IBOutlet weak var tableView: UITableView!
 
     private var isShowingComments = false
@@ -32,7 +32,7 @@ class DetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        sections = [.title, .description, .dateAndDuration, .comments]
+        sections = [.dateAndDuration, .title, .description]
 
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableView.automaticDimension
@@ -40,13 +40,23 @@ class DetailsVC: UIViewController {
         tableView.register(UINib(nibName: "SimpleTextCell", bundle: nil), forCellReuseIdentifier: "textCell")
         tableView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "commentCell")
 
+        thumbnailImageView.kf.setImage(with: URL(string: video.thumbnailURL))
 
         APIClient.shared.getRequest(for: "https://www.googleapis.com/youtube/v3/commentThreads?key=AIzaSyAJ7SZBsW40AETG7LMC_DeUA17DFf-U2Qo&textFormat=plainText&part=snippet&videoId=6f5pAi82FSE&maxResults=100") { (data, response, error) in
 
-        }
+            guard let jsonData = data as? JSON,
+                let jsonItems = jsonData["items"] as? [JSON]
+                else {
+                    return
 
-        for _ in 1...15 {
-            comments.append(Comment())
+            }
+
+            jsonItems.forEach{
+                [unowned self] item in
+                let c = Comment(with: item)!
+                self.comments.append(c)
+            }
+
         }
     }
 
@@ -55,7 +65,7 @@ class DetailsVC: UIViewController {
         isShowingComments = !isShowingComments
 
         tableView.reloadData()
-        
+
         tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
 
     }
@@ -69,11 +79,11 @@ extension DetailsVC: UITableViewDelegate {
 extension DetailsVC: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+        return isShowingComments ? 1 : sections.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isShowingComments ? 10 : 1
+        return isShowingComments ? comments.count : 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -81,6 +91,13 @@ extension DetailsVC: UITableViewDataSource {
         if isShowingComments {
 
             let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell") as! CommentCell
+
+            let url = URL(string: comments[indexPath.row].profileImage)
+            print(comments[indexPath.row].profileImage)
+            cell.userProfilePicture.kf.setImage(with: url)
+
+            cell.usernameLabel.text = comments[indexPath.row].username
+            cell.commentLabel.text = comments[indexPath.row].commentText
 
             return cell
 

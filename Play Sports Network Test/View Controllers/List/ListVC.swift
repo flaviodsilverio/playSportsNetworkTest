@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ListVC: UIViewController {
 
@@ -56,8 +57,6 @@ class ListVC: UIViewController {
             jsonItems.forEach {
                 [unowned self] item in
 
-                print(item)
-
                 if let video = Video(with: item) {
                     self.items.append(video)
                 }
@@ -103,6 +102,8 @@ extension ListVC: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? VideoListCell {
 
             cell.titleLabel.text = items[indexPath.row].title
+            print(items[indexPath.row].thumbnailURL)
+            cell.thumbnailImageView.kf.setImage(with: URL(string: items[indexPath.row].thumbnailURL))
 
             return cell
         } else {

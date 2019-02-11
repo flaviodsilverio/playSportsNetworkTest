@@ -12,17 +12,18 @@ struct Comment {
 
     let username: String
     let commentText: String
+    let profileImage: String
 
-    init(with json: JSON) {
+    init?(with json: JSON) {
 
-        username = "test"
-        commentText = "test"
-    }
+        guard let snippet = json["snippet"] as? JSON,
+            let topLevel = snippet["topLevelComment"] as? JSON,
+            let innerSnippet = topLevel["snippet"] as? JSON
+            else { return nil }
 
-    init() {
-
-        username = "test"
-        commentText = "test"
+        username = innerSnippet["authorDisplayName"] as? String ?? ""
+        commentText = innerSnippet["textDisplay"] as? String ?? ""
+        profileImage = innerSnippet["authorProfileImageUrl"] as? String ?? ""
     }
 
 }
