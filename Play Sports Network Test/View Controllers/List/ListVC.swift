@@ -21,6 +21,8 @@ class ListVC: UIViewController {
 
     var items = [Video]()
 
+    let apiClient = VideoListClient()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,6 +31,9 @@ class ListVC: UIViewController {
 
         let cell = UINib(nibName: "VideoListCell", bundle: nil)
         tableView.register(cell, forCellReuseIdentifier: "cell")
+
+        apiClient.delegate = self
+        apiClient.loadVideosForChannel(with: "")
 
         /*
          https://developers.google.com/apis-explorer/#p/youtube/v3/youtube.channels.list?
@@ -47,25 +52,6 @@ class ListVC: UIViewController {
 
         }*/
 
-        APIClient.shared.getRequest(for: "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=UU_A--fhX5gea0i4UtpD99Gg&key=AIzaSyAJ7SZBsW40AETG7LMC_DeUA17DFf-U2Qo") {
-            (data: Any?, response: URLResponse?, error: Error?) in
-
-
-            guard let jsonData = data as? [String:Any],
-                let jsonItems = jsonData["items"] as? [[String:Any]] else { return }
-
-            jsonItems.forEach {
-                [unowned self] item in
-
-                if let video = Video(with: item) {
-                    self.items.append(video)
-                }
-            }
-
-            DispatchQueue.main.sync {
-                self.tableView.reloadData()
-            }
-        }
     }
 
 
@@ -102,8 +88,13 @@ extension ListVC: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? VideoListCell {
 
             cell.titleLabel.text = items[indexPath.row].title
-            print(items[indexPath.row].thumbnailURL)
             cell.thumbnailImageView.kf.setImage(with: URL(string: items[indexPath.row].thumbnailURL))
+
+            print("Index Path: \(indexPath.row), Items: \(items.count)" )
+            
+            if indexPath.row == items.count - 1{
+                apiClient.loadVideosForChannel(with: "")
+            }
 
             return cell
         } else {
@@ -113,6 +104,19 @@ extension ListVC: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
+    }
+
+}
+
+extension ListVC: VideoListClientDelegate {
+
+    func apiError(error message: String) {
+
+    }
+
+    func loadedVideos(videos: [Video]) {
+        items = videos
+        tableView.reloadData()
     }
 
 }

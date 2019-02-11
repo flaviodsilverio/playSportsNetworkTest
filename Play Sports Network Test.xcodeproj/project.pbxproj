@@ -22,6 +22,8 @@
 		1B250CF5221080CA004607B7 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B250CF3221080CA004607B7 /* CommentCell.swift */; };
 		1B250CF6221080CA004607B7 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B250CF4221080CA004607B7 /* CommentCell.xib */; };
 		1B250CF82210991E004607B7 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B250CF72210991E004607B7 /* Comment.swift */; };
+		1B4014EF2211852E0076FCC1 /* VideoListClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4014EE2211852E0076FCC1 /* VideoListClient.swift */; };
+		1B5C5DD02211D877007124D9 /* VideoDetailsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5C5DCF2211D877007124D9 /* VideoDetailsClient.swift */; };
 		6A7CF25AD7998AF1D288CFED /* Pods_Play_Sports_Network_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF613AFA44D7EEB2EE4C10F /* Pods_Play_Sports_Network_Test.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +45,8 @@
 		1B250CF3221080CA004607B7 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		1B250CF4221080CA004607B7 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		1B250CF72210991E004607B7 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		1B4014EE2211852E0076FCC1 /* VideoListClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListClient.swift; sourceTree = "<group>"; };
+		1B5C5DCF2211D877007124D9 /* VideoDetailsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailsClient.swift; sourceTree = "<group>"; };
 		678600696DA50405107F173D /* Pods-Play Sports Network Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Play Sports Network Test.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Play Sports Network Test/Pods-Play Sports Network Test.debug.xcconfig"; sourceTree = "<group>"; };
 		7EF613AFA44D7EEB2EE4C10F /* Pods_Play_Sports_Network_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Play_Sports_Network_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED994E726D4AC2CD54D1053C /* Pods-Play Sports Network Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Play Sports Network Test.release.xcconfig"; path = "Pods/Target Support Files/Pods-Play Sports Network Test/Pods-Play Sports Network Test.release.xcconfig"; sourceTree = "<group>"; };
@@ -201,6 +205,8 @@
 			isa = PBXGroup;
 			children = (
 				1B250CF122107338004607B7 /* APIClient.swift */,
+				1B4014EE2211852E0076FCC1 /* VideoListClient.swift */,
+				1B5C5DCF2211D877007124D9 /* VideoDetailsClient.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -226,7 +232,6 @@
 				1B250CBF220EE7A4004607B7 /* Frameworks */,
 				1B250CC0220EE7A4004607B7 /* Resources */,
 				CFAD6EBD68FEB3CBF1E1618B /* [CP] Embed Pods Frameworks */,
-				80D656AAD63991A6E767F38A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -287,21 +292,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		80D656AAD63991A6E767F38A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Play Sports Network Test/Pods-Play Sports Network Test-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B63F38D2E64495DA2AFEBB92 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -351,7 +341,9 @@
 				1B250CE4220F04BE004607B7 /* DetailsVC.swift in Sources */,
 				1B250CD9220EE9D6004607B7 /* Video.swift in Sources */,
 				1B250CEE22106075004607B7 /* SimpleTextCell.swift in Sources */,
+				1B4014EF2211852E0076FCC1 /* VideoListClient.swift in Sources */,
 				1B250CC6220EE7A4004607B7 /* AppDelegate.swift in Sources */,
+				1B5C5DD02211D877007124D9 /* VideoDetailsClient.swift in Sources */,
 				1B250CF82210991E004607B7 /* Comment.swift in Sources */,
 				1B250CF5221080CA004607B7 /* CommentCell.swift in Sources */,
 			);

@@ -28,6 +28,8 @@ class DetailsVC: UIViewController {
     var sections = [DetailsSections]()
 
     var video: Video!
+
+    let apiClient = VideoDetailsClient()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,22 +44,26 @@ class DetailsVC: UIViewController {
 
         thumbnailImageView.kf.setImage(with: URL(string: video.thumbnailURL))
 
-        APIClient.shared.getRequest(for: "https://www.googleapis.com/youtube/v3/commentThreads?key=AIzaSyAJ7SZBsW40AETG7LMC_DeUA17DFf-U2Qo&textFormat=plainText&part=snippet&videoId=6f5pAi82FSE&maxResults=100") { (data, response, error) in
+        apiClient.delegate = self
+        apiClient.loadCommentsForVideo(with: video.id)
+        apiClient.loadVideoContentDetails(for: video)
 
-            guard let jsonData = data as? JSON,
-                let jsonItems = jsonData["items"] as? [JSON]
-                else {
-                    return
-
-            }
-
-            jsonItems.forEach{
-                [unowned self] item in
-                let c = Comment(with: item)!
-                self.comments.append(c)
-            }
-
-        }
+//        APIClient.shared.getRequest(for: "https://www.googleapis.com/youtube/v3/commentThreads?key=AIzaSyAJ7SZBsW40AETG7LMC_DeUA17DFf-U2Qo&textFormat=plainText&part=snippet&videoId=6f5pAi82FSE&maxResults=100") { (data, response, error) in
+//
+//            guard let jsonData = data as? JSON,
+//                let jsonItems = jsonData["items"] as? [JSON]
+//                else {
+//                    return
+//
+//            }
+//
+//            jsonItems.forEach{
+//                [unowned self] item in
+//                let c = Comment(with: item)!
+//                self.comments.append(c)
+//            }
+//
+//        }
     }
 
     @IBAction func didSelectSegment(_ sender: UISegmentedControl) {
@@ -98,6 +104,10 @@ extension DetailsVC: UITableViewDataSource {
 
             cell.usernameLabel.text = comments[indexPath.row].username
             cell.commentLabel.text = comments[indexPath.row].commentText
+
+            if indexPath.row == comments.count - 1 {
+                apiClient.loadCommentsForVideo(with: video.id)
+            }
 
             return cell
 
@@ -151,3 +161,21 @@ extension DetailsVC: UITableViewDataSource {
 /*
  https://www.googleapis.com/youtube/v3/commentThreads?key=AIzaSyAJ7SZBsW40AETG7LMC_DeUA17DFf-U2Qo&textFormat=plainText&part=snippet&videoId=6f5pAi82FSE&maxResults=100
  */
+
+extension DetailsVC: VideoDetailsClientDelegate {
+
+    func loadedContentDetails(video: Video) {
+
+    }
+
+    func loadedComments(comments: [Comment]) {
+        self.comments = comments
+        tableView.reloadData()
+    }
+
+    func apiError(error message: String) {
+
+    }
+
+}
+
