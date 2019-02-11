@@ -8,6 +8,8 @@
 
 import Foundation
 
+let BASEPATH = "https://www.googleapis.com/youtube/v3/"
+
 class APIClient {
 
     static let shared = APIClient()

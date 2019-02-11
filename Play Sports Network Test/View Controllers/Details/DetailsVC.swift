@@ -41,6 +41,7 @@ class DetailsVC: UIViewController {
 
         tableView.register(UINib(nibName: "SimpleTextCell", bundle: nil), forCellReuseIdentifier: "textCell")
         tableView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "commentCell")
+        tableView.register(UINib(nibName: "DateAndDurationCell", bundle: nil), forCellReuseIdentifier: "dateCell")
 
         thumbnailImageView.kf.setImage(with: URL(string: video.thumbnailURL))
 
@@ -48,22 +49,7 @@ class DetailsVC: UIViewController {
         apiClient.loadCommentsForVideo(with: video.id)
         apiClient.loadVideoContentDetails(for: video)
 
-//        APIClient.shared.getRequest(for: "https://www.googleapis.com/youtube/v3/commentThreads?key=AIzaSyAJ7SZBsW40AETG7LMC_DeUA17DFf-U2Qo&textFormat=plainText&part=snippet&videoId=6f5pAi82FSE&maxResults=100") { (data, response, error) in
-//
-//            guard let jsonData = data as? JSON,
-//                let jsonItems = jsonData["items"] as? [JSON]
-//                else {
-//                    return
-//
-//            }
-//
-//            jsonItems.forEach{
-//                [unowned self] item in
-//                let c = Comment(with: item)!
-//                self.comments.append(c)
-//            }
-//
-//        }
+        self.view.showLoader()
     }
 
     @IBAction func didSelectSegment(_ sender: UISegmentedControl) {
@@ -73,12 +59,7 @@ class DetailsVC: UIViewController {
         tableView.reloadData()
 
         tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-
     }
-
-}
-
-extension DetailsVC: UITableViewDelegate {
 
 }
 
@@ -99,7 +80,6 @@ extension DetailsVC: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell") as! CommentCell
 
             let url = URL(string: comments[indexPath.row].profileImage)
-            print(comments[indexPath.row].profileImage)
             cell.userProfilePicture.kf.setImage(with: url)
 
             cell.usernameLabel.text = comments[indexPath.row].username
@@ -136,10 +116,20 @@ extension DetailsVC: UITableViewDataSource {
 
     func dateAndDurationCell() -> UITableViewCell {
 
-        let cell = UITableViewCell.init(style: .value1, reuseIdentifier: "dateAndDuration")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "dateCell") as! DateAndDurationCell
 
-        cell.textLabel?.text = video.date
-        cell.detailTextLabel?.text = "56:34"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+
+        let date = dateFormatter.date(from: video.date)
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+
+        cell.dateAddedLabel?.text = dateFormatter.string(from: date ?? Date())
+
+        let time = video.duration.split(separator: "T").last
+        let timeString = String(String(time ?? "").replacingOccurrences(of: "M", with: ":")).replacingOccurrences(of: "S", with: "")
+
+        cell.durationLabel?.text = timeString
 
         return cell
     }
@@ -158,14 +148,13 @@ extension DetailsVC: UITableViewDataSource {
     }
 }
 
-/*
- https://www.googleapis.com/youtube/v3/commentThreads?key=AIzaSyAJ7SZBsW40AETG7LMC_DeUA17DFf-U2Qo&textFormat=plainText&part=snippet&videoId=6f5pAi82FSE&maxResults=100
- */
-
 extension DetailsVC: VideoDetailsClientDelegate {
 
     func loadedContentDetails(video: Video) {
+        self.video = video
+        tableView.reloadData()
 
+        self.view.hideLoader()
     }
 
     func loadedComments(comments: [Comment]) {
@@ -176,6 +165,4 @@ extension DetailsVC: VideoDetailsClientDelegate {
     func apiError(error message: String) {
 
     }
-
 }
-

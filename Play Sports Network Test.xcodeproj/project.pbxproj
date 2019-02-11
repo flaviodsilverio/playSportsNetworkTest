@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B099A3F22122D6400231188 /* DateAndDurationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B099A3D22122D6400231188 /* DateAndDurationCell.swift */; };
+		1B099A4022122D6400231188 /* DateAndDurationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B099A3E22122D6400231188 /* DateAndDurationCell.xib */; };
+		1B099A4322123EA500231188 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B099A4222123EA500231188 /* UIView+Extensions.swift */; };
 		1B250CC6220EE7A4004607B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B250CC5220EE7A4004607B7 /* AppDelegate.swift */; };
 		1B250CC8220EE7A4004607B7 /* ListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B250CC7220EE7A4004607B7 /* ListVC.swift */; };
 		1B250CCB220EE7A4004607B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B250CC9220EE7A4004607B7 /* Main.storyboard */; };
@@ -28,6 +31,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B099A3D22122D6400231188 /* DateAndDurationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndDurationCell.swift; sourceTree = "<group>"; };
+		1B099A3E22122D6400231188 /* DateAndDurationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateAndDurationCell.xib; sourceTree = "<group>"; };
+		1B099A4222123EA500231188 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		1B250CC2220EE7A4004607B7 /* Play Sports Network Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Play Sports Network Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B250CC5220EE7A4004607B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B250CC7220EE7A4004607B7 /* ListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVC.swift; sourceTree = "<group>"; };
@@ -72,6 +78,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1B099A4122123E8500231188 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1B099A4222123EA500231188 /* UIView+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		1B250CB9220EE7A4004607B7 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +107,7 @@
 		1B250CC4220EE7A4004607B7 /* Play Sports Network Test */ = {
 			isa = PBXGroup;
 			children = (
+				1B099A4122123E8500231188 /* Extensions */,
 				1B250CF02210732A004607B7 /* Networking */,
 				1B250CE6220F2881004607B7 /* Singletons */,
 				1B250CE1220F0491004607B7 /* View Controllers */,
@@ -197,6 +212,8 @@
 		1B250CEB22106007004607B7 /* Date and Duration Cell */ = {
 			isa = PBXGroup;
 			children = (
+				1B099A3D22122D6400231188 /* DateAndDurationCell.swift */,
+				1B099A3E22122D6400231188 /* DateAndDurationCell.xib */,
 			);
 			path = "Date and Duration Cell";
 			sourceTree = "<group>";
@@ -280,6 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B099A4022122D6400231188 /* DateAndDurationCell.xib in Resources */,
 				1B250CD0220EE7A6004607B7 /* LaunchScreen.storyboard in Resources */,
 				1B250CE0220EFAAF004607B7 /* VideoListCell.xib in Resources */,
 				1B250CEF22106075004607B7 /* SimpleTextCell.xib in Resources */,
@@ -340,8 +358,10 @@
 				1B250CDF220EFAAF004607B7 /* VideoListCell.swift in Sources */,
 				1B250CE4220F04BE004607B7 /* DetailsVC.swift in Sources */,
 				1B250CD9220EE9D6004607B7 /* Video.swift in Sources */,
+				1B099A4322123EA500231188 /* UIView+Extensions.swift in Sources */,
 				1B250CEE22106075004607B7 /* SimpleTextCell.swift in Sources */,
 				1B4014EF2211852E0076FCC1 /* VideoListClient.swift in Sources */,
+				1B099A3F22122D6400231188 /* DateAndDurationCell.swift in Sources */,
 				1B250CC6220EE7A4004607B7 /* AppDelegate.swift in Sources */,
 				1B5C5DD02211D877007124D9 /* VideoDetailsClient.swift in Sources */,
 				1B250CF82210991E004607B7 /* Comment.swift in Sources */,

@@ -7,9 +7,6 @@
 //
 
 import Foundation
-/*
-https://www.googleapis.com/youtube/v3/videos?id=9imVeD3ARq4&part=contentDetails&key=AIzaSyAJ7SZBsW40AETG7LMC_DeUA17DFf-U2Qo
- */
 
 protocol VideoDetailsClientDelegate: class {
     func loadedComments(comments: [Comment])
@@ -21,37 +18,41 @@ class VideoDetailsClient {
 
     weak var delegate: VideoDetailsClientDelegate?
 
-    var pageToken: String? = nil
     var comments = [Comment]()
 
     func loadVideoContentDetails(for video: Video) {
 
-        APIClient.shared.getRequest(for: "https://www.googleapis.com/youtube/v3/videos?id=\(video.id)&part=contentDetails&key=AIzaSyAJ7SZBsW40AETG7LMC_DeUA17DFf-U2Qo") {
+        let urlString = BASEPATH + "videos?id=\(video.id)&part=contentDetails&key=AIzaSyAJ7SZBsW40AETG7LMC_DeUA17DFf-U2Qo"
+
+        APIClient.shared.getRequest(for: urlString) {
             (data: Any?, response: URLResponse?, error: Error?) in
 
-            print(data)
+            guard let jsonData = data as? JSON,
+                  let items = jsonData["items"] as? [JSON],
+                  let item = items.first
+                else { return }
 
+            var v = video
+            v.addDuration(from: item)
+
+            DispatchQueue.main.sync {
+                self.delegate?.loadedContentDetails(video: v)
+            }
         }
     }
 
     func loadCommentsForVideo(with id: String) {
 
-        var requestString = "https://www.googleapis.com/youtube/v3/commentThreads?key=AIzaSyAJ7SZBsW40AETG7LMC_DeUA17DFf-U2Qo&textFormat=plainText&part=snippet&videoId=\(id)&maxResults=100"
-
-        if pageToken != nil {
-            requestString.append("&pageToken=\(pageToken!)")
-        }
+        let requestString = BASEPATH + "commentThreads?key=AIzaSyAJ7SZBsW40AETG7LMC_DeUA17DFf-U2Qo&textFormat=plainText&part=snippet&videoId=\(id)&maxResults=100"
 
         APIClient.shared.getRequest(for: requestString) {
             (data: Any?, response: URLResponse?, error: Error?) in
 
 
             guard let jsonData = data as? JSON,
-                let token = jsonData["nextPageToken"] as? String,
                 let jsonItems = jsonData["items"] as? [JSON]
                 else {
                     return
-
             }
 
             jsonItems.forEach{

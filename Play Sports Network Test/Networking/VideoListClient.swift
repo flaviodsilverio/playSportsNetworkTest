@@ -22,19 +22,16 @@ class VideoListClient {
 
     func loadVideosForChannel(with name: String) {
 
-        var requestString = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=UU_A--fhX5gea0i4UtpD99Gg&key=AIzaSyAJ7SZBsW40AETG7LMC_DeUA17DFf-U2Qo"
+        var requestString = BASEPATH + "playlistItems?part=snippet&maxResults=50&playlistId=UU_A--fhX5gea0i4UtpD99Gg&key=AIzaSyAJ7SZBsW40AETG7LMC_DeUA17DFf-U2Qo&order=date"
 
         if pageToken != nil {
             requestString.append("&pageToken=\(pageToken!)")
         }
 
-        print(requestString)
-
         APIClient.shared.getRequest(for: requestString) {
             (data: Any?, response: URLResponse?, error: Error?) in
 
             guard let jsonData = data as? [String:Any],
-                //let pageInfo = jsonData["pageInfo"] as? JSON,
                 let token = jsonData["nextPageToken"] as? String,
                 let jsonItems = jsonData["items"] as? [[String:Any]] else { return }
 

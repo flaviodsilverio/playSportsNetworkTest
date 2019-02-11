@@ -17,22 +17,33 @@ struct Video {
     let title: String
     let id: String
     let thumbnailURL: String
+    var duration: String
 
     init?(with json: JSON) {
 
-        guard let snippet = json["snippet"] as? JSON else { return nil }
+        guard let snippet = json["snippet"] as? JSON,
+              let resourceID = snippet["resourceId"] as? JSON
+            else {
+                return nil
+        }
 
         description = snippet["description"] as? String ?? ""
         date = snippet["publishedAt"] as? String ?? ""
         title = snippet["title"] as? String ?? ""
-        id = snippet["_1DEZSURw2E"] as? String ?? "_1DEZSURw2E"
+        id = resourceID["videoId"] as? String ?? ""
 
-        guard let thumbnails = snippet["thumbnails"] as? JSON else { return nil }
+        thumbnailURL = ((snippet["thumbnails"] as? JSON)?["medium"] as! JSON)["url"] as? String ?? ""
 
-        print(thumbnails)
+        duration = ""
+    }
 
-        thumbnailURL = (thumbnails["medium"] as! JSON)["url"] as? String ?? ""
+    mutating func addDuration(from json: JSON) {
 
+        guard let contentDetails = json["contentDetails"] as? JSON,
+              let duration = contentDetails["duration"] as? String
+            else { return }
+
+        self.duration = duration
     }
 }
 
