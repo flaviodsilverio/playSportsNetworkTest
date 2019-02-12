@@ -6,9 +6,9 @@ I could've done a few more things but I did spend a bit more than the 3 hours sp
 On the first time I read what was required I did miss the 3h time limit, that way I did prioritise some things I shouldn't have and I didn't do things I should've done.
 
 Main points I missed:
-- The List isn't ordered by date as requested. Initially when reading about the APIn I found the parameters "order=date" and assumed everything would be ordered. Only now, just before I commited it, did I notice it wasn't.
+- The List isn't ordered by date as requested. Initially when reading about the API I found the parameters "order=date" and assumed everything would be ordered. Only now, just before I commited it, did I notice it wasn't.
 - The comments aren't paged. You get 100 comments per video, that's it.
-- Only "Happy path" works. If there's no connection or the data doesn't come correctly there's no errors to the user. I planned on doing a proper "No Data View" but that was before I noticed I was supposed to only spend 3h on it.
+- Only "Happy path" works. If there's no connection or the data doesn't come correctly there's no errors to the user. I planned on doing a proper "No Data View" but there was no time.
 
 I think that's pretty much it! 
 
